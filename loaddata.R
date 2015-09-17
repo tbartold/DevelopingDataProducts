@@ -9,7 +9,15 @@ install <- function(x) {
   if(!require(x,character.only = TRUE)) stop("Package not found")
 }
 
-install("stringr")
+install('devtools')
+install('stringr')
+install('ggplot2')
+install('shiny')
+install('maps')
+install('mapproj')
+install('data.table')
+install('shinyapps')
+
 
 ################################################################################
 ### this is to load the dictionary, parse, and use it later
@@ -82,8 +90,24 @@ for (i in 1:nrow) {
   x<-regexpr(",",c)[1]
   if (x>0) {
     # we have a county - we need to remove the word county
-    counties[i]<-gsub(" county","",tolower(substr(c,0,x-1)))
     abb<-substr(c,x+2,nchar(c))
+    cou<-tolower(substr(c,0,x-1))
+    if (grepl(" county$",cou,perl=TRUE)) {
+      counties[i]<-gsub(" county","",cou)
+    } else if (grepl(" parish$",cou,perl=TRUE)) {
+      # but... louisiana counties are called 'Parish'
+      counties[i]<-gsub(" parish","",cou)
+    } else if (grepl(" city$",cou,perl=TRUE)) {
+      counties[i]<-gsub(" city","",cou)
+    } else if (grepl(" census area$",cou,perl=TRUE)) {
+      counties[i]<-gsub(" census area","",cou)
+    } else if (grepl(" municipality$",cou,perl=TRUE)) {
+      counties[i]<-gsub(" municipality","",cou)
+    } else if (grepl(" city and borough$",cou,perl=TRUE)) {
+      counties[i]<-gsub(" city and borough","",cou)
+    } else if (grepl(" borough$",cou,perl=TRUE)) {
+      counties[i]<-gsub(" borough","",cou)
+    }
     if (abb=="DC") {
         states[i]<-"district of columbia"
     } else {
@@ -94,6 +118,8 @@ for (i in 1:nrow) {
     states[i]<-tolower(c)
   }
 }
+# something went wrong?
+counties[330]<-"district of columbia"
 
 ################################################################################
 # for each county and question we should have a percentage
