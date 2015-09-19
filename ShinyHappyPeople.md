@@ -3,19 +3,26 @@ Shiny Happy People
 author: bartold
 date: September 2015
 
-Background
+
+We want to look up Facts about People
 ========================================================
 
-- Who wants to be serious? This was a fun project for a fun class.
+The US Census Bureau has lots of [Statistics](http://quickfacts.census.gov/qfd/download_data.html) about People, and we want to look at them.
 
-- This project uses Shiny, it made me happy, and it talks about people.
+To Quote from the site: 
 
-   - US Census Buearau [Statistics](http://quickfacts.census.gov/qfd/download_data.html)
-   - Interactive in a Browser of your choice
-   - Colorful and Fun to explore
+"The entire State and County QuickFacts dataset, with U.S., state, and county data is available for download."
 
-Are Census Bureau Statistics Fun?
+But also:
+
+"3195 rows, one for the U.S., one for each state, one for each county, but no column headings. Each row is identified by a 5-digit combined state and county code. Data are comma-delimited. ... Flat ASCII files have mnemonic identifier, full title, number of decimals, and the U.S. total value "
+
+What?
+
+Statistics should be Fun
 ========================================================
+
+These statistics are neither easy nor fun to look at.
 
 
 ```
@@ -27,23 +34,21 @@ Are Census Bureau Statistics Fun?
  $ POP010210: int  308745538 4779736 54571 182265 27457 22915 57322 10914 20947 118572 ...
 ```
 
-NO!
-
 Introducing a Shiny alternative!
 ========================================================
 
-![Image](ShinyHappyPeople.png)
+The [Shiny](http://bartold.shinyapps.io/DevelopingDataProducts/) app takes input from the user for:
 
-The Shiny Happy People app is Fun!
-========================================================
+- Which scale of map to show. County, State or Nation
+- What statistic to look at. Lots of facts about [People](http://bartold.shinyapps.io/DevelopingDataProducts/)
+- How the map should be colored. That's [Happy](http://bartold.shinyapps.io/DevelopingDataProducts/)
 
-The Shiny app takes input from the user for:
+The app selects the info about the chosen fact from the pre-loaded dataset, and displays it on a colorful map of the US.
+***
+![Image](State.png)
 
-- Which scale of map to show (County, State or Nation)
-- What statistic to look at (all sorts of facts about people) 
-- How the map should be colored (colors make me happy)
+![Image](County.png)
 
-The app then selects the data about the chosen fact from the pre-loaded dataset, and displays the data on a map of the US using a color gradient to indicate the percentages recorded for the fact at the scale required.
 
 Try the Shiny Happy People app today!
 ========================================================
@@ -54,4 +59,4 @@ Head on over to the [Shiny Happy People app] (http://bartold.shinyapps.io/Develo
 
 Don't forget to smile when you're exploring it. It will only take a short time, and it will make me happy that you played with it.
 
-The complete code for this presentation is at [GitHub](http://github.com/tbartold/DevelopingDataProducts)
+The complete code for this presentation, and the app itself, is at [GitHub](http://github.com/tbartold/DevelopingDataProducts)
